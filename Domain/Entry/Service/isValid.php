@@ -32,7 +32,8 @@ class isValid
             "maintext",
             "pageid",
             "date",
-            "exturl");
+            "exturl",
+            "teasertext");
 
         $this->errors = array();
     }
@@ -146,6 +147,16 @@ class isValid
         }
         
         if(!$bool) {
+            return false;
+        }
+        return true;
+    }
+    
+    private function teasertextValidate($value){
+        if(empty($value)){
+            return true;
+        }
+        if(!$this->defaultValidation("teasertext", $value, 255)){
             return false;
         }
         return true;

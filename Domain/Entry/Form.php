@@ -46,6 +46,7 @@ class Form
                     if($this->request->getAlnum("type") == "text" && !empty($array["maintext"])) {
                         $array["pageid"] = 0;  
                         $array["exturl"] = "";  
+                        $array["teasertext"] = "";  
                     }
                     elseif($this->request->getAlnum("type") == "cms" && $array["pageid"] > 0) {
                         $array["maintext"] = "";   
@@ -80,7 +81,8 @@ class Form
                     
                     if($this->request->getAlnum("type") == "text" && !empty($array["maintext"])) {
                         $array["pageid"] = 0;  
-                        $array["exturl"] = "";  
+                        $array["exturl"] = ""; 
+                        $array["teasertext"] = "";  
                     }
                     elseif($this->request->getAlnum("type") == "cms" && $array["pageid"] > 0) {
                         $array["maintext"] = "";   
@@ -112,6 +114,7 @@ class Form
                             "headline1" => $result["opt1text"],
                             "headline2" => $result["opt2text"],
                             "exturl" => $result["opt3text"],
+                            "teasertext" => $result["opt4text"],
                             "maintext" => $result["opt1clob"],
                             "pageid" => $result["opt1number"]
                         ),
