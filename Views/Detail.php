@@ -18,13 +18,14 @@ class Detail
      * @param array $data
      * @return string
      */
-    public function render($data)
+    public function render($data, $admin = false, $baseUrl = false)
     {
         $view = new \lw_view(dirname(__FILE__) . '/Templates/Detail.phtml');
         $view->data = $data["formData"];
         $view->page = $data["news_page"];
         $view->lang = $data["lang"];
-        $view->baseUrl = \LwNews\Services\Page::getUrl()."&oid=".$data["oid"];
+        #$view->baseUrl = \LwNews\Services\Page::getUrl()."&oid=".$data["oid"];
+        $view->baseUrl = $baseUrl."&oid=".$data["oid"];
 
         return $view->render();
     }

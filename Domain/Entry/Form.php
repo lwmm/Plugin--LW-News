@@ -61,7 +61,7 @@ class Form
                         $commandHandler = new \LwNews\Domain\Entry\DataHandler\CommandHandler($this->response->getDbObject());
                         $commandHandler->addEntry($array);
 
-                        \LwNews\Services\Page::reload(\LwNews\Services\Page::getUrl(array("show" => "all")));
+                        \LwNews\Services\Page::reload($this->response->getDataByKey("baseUrl")."&show=all");
                     }
                     else {
                         $plugindata = $this->response->getDataByKey("plugindata");
@@ -97,7 +97,7 @@ class Form
                         $commandHandler = new \LwNews\Domain\Entry\DataHandler\CommandHandler($this->response->getDbObject());
                         $commandHandler->saveEntry($this->request->getInt("id"), $array);
 
-                        \LwNews\Services\Page::reload(\LwNews\Services\Page::getUrl(array("show" => "all")));
+                        \LwNews\Services\Page::reload($this->response->getDataByKey("baseUrl")."&show=all");
                     }
                     else {
                         $plugindata = $this->response->getDataByKey("plugindata");

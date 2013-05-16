@@ -35,7 +35,12 @@ class Page
      */
     public static function getUrl($array = false)
     {
-        return \lw_page::getInstance()->getUrl($array);
+       return \lw_page::getInstance()->getUrl($array);
+    }
+    
+    public function getActualIndexUrl()
+    {
+        return $this->config['url']['client'].'index.php?index='.$this->request->getIndex();
     }
 
 }

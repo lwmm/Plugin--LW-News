@@ -19,10 +19,11 @@ class Form
      * @param bool $admin
      * @return  string
      */
-    public function render($data, $admin = false)
+    public function render($data, $admin = false, $baseUrl = false)
     {
         if (!$admin) {
-            \LwNews\Services\Page::reload(\LwNews\Services\Page::getUrl());
+            #\LwNews\Services\Page::reload(\LwNews\Services\Page::getUrl());
+            \LwNews\Services\Page::reload($baseUrl);
         }
         else {
             if (array_key_exists("notvalid", $data)) {
@@ -36,17 +37,20 @@ class Form
             $view = new \lw_view(dirname(__FILE__) . '/Templates/EntryForm.phtml');
 
             $view->admin = $admin;
-            $view->baseUrl = \LwNews\Services\Page::getUrl();
+            #$view->baseUrl = \LwNews\Services\Page::getUrl();
+            $view->baseUrl = $baseUrl;
             $view->calendaricon = $data["c_media"] . "pics/fatcow_icons/16x16_0180/calendar.png";
             $view->mce = $data["c_media"] . "tinymce/jscripts/tiny_mce/tiny_mce.js";
 
             if ($data["cmd"] == "add") {
-                $view->formAction = \LwNews\Services\Page::getUrl() . "&show=form&cmd=add&oid=".$data["oid"];
+                #$view->formAction = \LwNews\Services\Page::getUrl() . "&show=form&cmd=add&oid=".$data["oid"];
+                $view->formAction = $baseUrl . "&show=form&cmd=add&oid=".$data["oid"];
                 $view->formTitle = "Neuen News-Eintrag anlegen";
             }
 
             if ($data["cmd"] == "edit") {
-                $view->formAction = \LwNews\Services\Page::getUrl() . "&show=form&cmd=edit&id=" . $data["id"]."&oid=".$data["oid"];
+                #$view->formAction = \LwNews\Services\Page::getUrl() . "&show=form&cmd=edit&id=" . $data["id"]."&oid=".$data["oid"];
+                $view->formAction = $baseUrl . "&show=form&cmd=edit&id=" . $data["id"]."&oid=".$data["oid"];
                 $view->formTitle = "News-Eintrag bearbeiten";
             }
 

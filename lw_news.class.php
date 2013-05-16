@@ -44,6 +44,7 @@ class lw_news extends lw_plugin
             $response->setDbObject($this->db);
             $response->setDataByKey("plugindata", $plugindata["parameter"]);
             $response->setDataByKey("c_media", $this->config["url"]["media"]);
+            $response->setDataByKey("baseUrl", $this->config["url"]["client"]."index.php?index=".$this->request->getIndex());
 
             $controller = new \LwNews\Controller\NewsController($response, $this->request, $this->auth->isLoggedIn());
             $controller->execute();

@@ -59,7 +59,7 @@ class NewsController extends \lw_object
         $controller = new $class($this->response, $this->request);
 
         $view = new $class_view($this->request);
-        $this->response->setOutputByKey("lw_news_".$plugindata["oid"], $view->render($controller->execute(), $this->admin));
+        $this->response->setOutputByKey("lw_news_".$plugindata["oid"], $view->render($controller->execute(), $this->admin, $this->response->getDataByKey("baseUrl")));
     }
 
     /**
@@ -72,7 +72,7 @@ class NewsController extends \lw_object
         $commandHandler = new \LwNews\Domain\Entry\DataHandler\CommandHandler($this->response->getDbObject());
         $commandHandler->deleteEntry($id);
 
-        \LwNews\Services\Page::reload(\LwNews\Services\Page::getUrl());
+        \LwNews\Services\Page::reload($this->response->getDataByKey("baseUrl"));
     }
 
 }

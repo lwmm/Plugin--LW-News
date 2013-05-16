@@ -19,7 +19,7 @@ class All
      * @param bool $admin
      * @return string
      */
-    public function render($data, $admin = false)
+    public function render($data, $admin = false, $baseUrl = false)
     {
         $count = $data["count"];
         $pagesize = $data["pagesize"];
@@ -33,7 +33,8 @@ class All
         unset($data["oid"]);
 
 
-        $baseUrl = \LwNews\Services\Page::getUrl()."&oid=".$oid;
+        #$baseUrl = \LwNews\Services\Page::getUrl() . "&oid=" . $oid;
+        $baseUrl = $baseUrl . "&oid=" . $oid;
         $pagecount = ceil(intval($count) / intval($pagesize));
 
         $view = new \lw_view(dirname(__FILE__) . '/Templates/NewsList.phtml');
@@ -41,7 +42,8 @@ class All
         $view->pagecount = $pagecount;
         $view->admin = $admin;
         $view->baseUrl = $baseUrl;
-        $view->baseUrlWithoutIndex = substr(\LwNews\Services\Page::getUrl(), 0, strpos(\LwNews\Services\Page::getUrl(), "index=") + strlen("index="));
+        #$view->baseUrlWithoutIndex = substr(\LwNews\Services\Page::getUrl(), 0, strpos(\LwNews\Services\Page::getUrl(), "index=") + strlen("index="));
+        $view->baseUrlWithoutIndex = substr($baseUrl, 0, strpos($baseUrl, "index=") + strlen("index="));
         $view->data = $data;
         $view->page = $page;
         $view->paging = $this->buildPaging($pagecount, $page, $baseUrl);
