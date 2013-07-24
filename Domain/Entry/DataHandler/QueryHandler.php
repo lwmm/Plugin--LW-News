@@ -44,7 +44,7 @@ class QueryHandler
     public function selectEntryPage($data, $page)
     {
         $this->db->setStatement('SELECT * FROM t:lw_master WHERE lw_object = :lw_object AND name = :name  AND language = :language ORDER BY opt2number DESC ');
-        $this->db->bindParameter("lw_object", "s", "bionrw_news");
+        $this->db->bindParameter("lw_object", "s", "lw_news");
         $this->db->bindParameter("name", "s", $data["category"]);
         $this->db->bindParameter("language", "s", $data["language"]);
         return $this->db->pselect($data["pagesize"] * $page, $data["pagesize"]);
@@ -59,7 +59,7 @@ class QueryHandler
     public function countEntries($data)
     {
         $this->db->setStatement('SELECT COUNT(*) FROM t:lw_master WHERE lw_object = :lw_object AND name = :name  AND language = :language ORDER BY opt2number DESC ');
-        $this->db->bindParameter("lw_object", "s", "bionrw_news");
+        $this->db->bindParameter("lw_object", "s", "lw_news");
         $this->db->bindParameter("name", "s", $data["category"]);
         $this->db->bindParameter("language", "s", $data["language"]);
         return $this->db->pselect1();

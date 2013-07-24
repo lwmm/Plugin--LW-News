@@ -34,7 +34,7 @@ class CommandHandler
         if (empty($array["pageid"]))
             $array["pageid"] = 0;
         $this->db->setStatement("INSERT INTO t:lw_master ( lw_object, name, language, opt1text, opt2text, opt3text, opt4text, opt1number, opt2number, lw_first_date, lw_last_date) VALUES ( :lw_object, :name, :language, :opt1text, :opt2text, :opt3text, :opt4text, :opt1number, :opt2number, :date, :date ) ");
-        $this->db->bindParameter("lw_object", "s", "bionrw_news");
+        $this->db->bindParameter("lw_object", "s", "lw_news");
         $this->db->bindParameter("name", "s", $array["name"]);
         $this->db->bindParameter("language", "s", $array["language"]);
         $this->db->bindParameter("opt1text", "s", $array["headline1"]);
